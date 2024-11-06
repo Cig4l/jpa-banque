@@ -3,25 +3,14 @@ package org.example;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "livret_a")
-public class LivretA {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+import java.util.List;
 
+@Entity
+public class LivretA extends Compte {
     @Column(name = "taux")
-    Double taux;
+    private Double taux;
 
     public LivretA(){}
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Double getTaux() {
         return taux;

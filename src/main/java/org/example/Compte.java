@@ -1,26 +1,25 @@
 package org.example;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
-@Table(name="compte")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Compte {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Column(name="solde")
-    Double solde;
+    private Double solde;
 
     @ManyToMany(mappedBy = "comptes")
     private List<Client> clients;
 
-    @OneToMany(mappedBy = "compte")
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
     private List<Operation> operations;
 
-    public Compte(){}
+    public Compte() {}
 
     public Integer getId() {
         return id;
@@ -44,5 +43,13 @@ public class Compte {
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public List<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(List<Operation> operations) {
+        this.operations = operations;
     }
 }

@@ -14,7 +14,7 @@ public class Banque {
     @Column(name="nom")
     private String nom;
 
-    @OneToMany(mappedBy = "banque")
+    @OneToMany(mappedBy = "banque", cascade = CascadeType.ALL)
     private List<Client> clients;
 
     public  Banque(){}

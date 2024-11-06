@@ -2,30 +2,33 @@ package org.example;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name="operation")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Operation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO) // Utilisez AUTO pour TABLE_PER_CLASS
+    private Integer id;
 
+    @Temporal(TemporalType.TIMESTAMP) // Spécifie le type temporel pour la date
     @Column(name = "date")
-    Date date;
+    private LocalDateTime date;
 
     @Column(name = "montant")
-    Double montant;
+    private Double montant;
 
     @Column(name = "motif")
-    String motif;
+    private String motif;
 
     @ManyToOne
     @JoinColumn(name = "id_compte")
-    Compte compte;
+    private Compte compte;
 
-    public Operation(){}
+    public Operation() {}
 
+    // Getters et Setters
     public Integer getId() {
         return id;
     }
@@ -34,11 +37,11 @@ public class Operation {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
