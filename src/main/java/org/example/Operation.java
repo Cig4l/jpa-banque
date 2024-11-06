@@ -57,4 +57,12 @@ public class Operation {
     public void setMotif(String motif) {
         this.motif = motif;
     }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
 }

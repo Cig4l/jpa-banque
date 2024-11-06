@@ -9,12 +9,12 @@ import java.util.List;
 public class Compte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer numero;
+    Integer id;
 
     @Column(name="solde")
     Double solde;
 
-    @ManyToMany(mappedBy = "compte")
+    @ManyToMany(mappedBy = "comptes")
     private List<Client> clients;
 
     @OneToMany(mappedBy = "compte")
@@ -22,12 +22,12 @@ public class Compte {
 
     public Compte(){}
 
-    public Integer getNumero() {
-        return numero;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Double getSolde() {
